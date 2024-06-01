@@ -1,0 +1,20 @@
+﻿<Application x:Class="Pogodynka.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="MainWindow.xaml">
+    <!-- Deklaracja Application, która definiuje punkt wejścia dla aplikacji WPF -->
+    <Application.Resources>
+        <!-- Definicja zasobów globalnych dostępnych w całej aplikacji -->
+        <ResourceDictionary>
+            <!-- Deklaracja słownika zasobów -->
+            <ResourceDictionary.MergedDictionaries>
+                <!-- Definicja scalonych słowników zasobów, które łączą wiele słowników zasobów w jednym -->
+                
+                <ResourceDictionary Source="/Style/Kolory.xaml"/>
+                <ResourceDictionary Source="/Style/StylePrzycisku.xaml"/>
+                <ResourceDictionary Source="/Style/StyleTextboxa.xaml"/>
+                
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,78 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style x:Key="tbox_Txt" TargetType="{x:Type TextBox}">
+    <!-- Deklaracja stylu dla pola tekstowego -->
+
+        <!-- Ustawienie koloru tekstu -->
+        <!-- Ustawienie koloru tła -->
+        <!-- Ustawienie rodziny czcionek -->
+        <!-- Ustawienie rozmiaru czcionki -->
+        <!-- Ustawienie wysokości pola tekstowego -->
+        <!-- Ustawienie szerokości pola tekstowego -->
+        <!-- Ustawienie kursora myszy -->
+        <!-- Ustawienie wewnętrznego marginesu -->
+        <!-- Ustawienie położenia poziomego -->
+        <!-- Ustawienie położenia pionowego -->
+
+        <Setter Property="Foreground" Value="{StaticResource cs_Text1}"/>
+        <Setter Property="Background" Value="{StaticResource cs_TextBrush}"/>
+        <Setter Property="FontFamily" Value="Fabada"/>
+        <Setter Property="FontSize" Value="11"/>
+        <Setter Property="Height" Value="35"/>
+        <Setter Property="Width" Value="250"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Padding" Value="5 4.5 5 4"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Border x:Name="TxtBorder"
+                            CornerRadius="5"
+                            BorderBrush="{StaticResource cs_TextBrush}"
+                            BorderThickness="2"
+                            SnapsToDevicePixels="True">
+                        <Grid Margin="{TemplateBinding Padding}">
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                          Grid.Column="0"
+                                          Margin="0"
+                                          Focusable="False"
+                                          HorizontalScrollBarVisibility="Hidden"
+                                          VerticalScrollBarVisibility="Hidden"/>
+                            <Label x:Name="Watermark"
+                                   Foreground="{StaticResource cs_Text1}"
+                                   Content="{TemplateBinding Tag}"
+                                   Grid.Column="1"
+                                   Padding="5 0 20 0"
+                                   Opacity="0.5"
+                                   Visibility="Collapsed"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" TargetName="TxtBorder" Value="{StaticResource cs_BorderBrush}"/>
+                            <!-- Zmiana koloru obramowania, gdy mysz jest nad polem tekstowym -->
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter Property="BorderBrush" TargetName="TxtBorder" Value="{StaticResource cs_BorderBrush}"/>
+                            <Setter Property="BorderThickness" TargetName="TxtBorder" Value="0.5 0.5 0.5 3"/>
+                            <!-- Zmiana grubości obramowania, gdy pole tekstowe jest aktywne -->
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Text" Value=""/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Visibility" TargetName="Watermark" Value="Visible"/>
+                            <!-- Pokazanie znaku wodnego, gdy pole tekstowe jest puste -->
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+</ResourceDictionary>

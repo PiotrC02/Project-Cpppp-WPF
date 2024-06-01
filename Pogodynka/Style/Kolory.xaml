@@ -1,0 +1,19 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Definicja gradientu liniowego dla tła aplikacji -->
+    <LinearGradientBrush x:Key="cs_Background" StartPoint="0,0" EndPoint="1,2">
+        <GradientStop Color="SeaGreen" Offset="0.0"/> <!-- Stopka gradientu koloru zielonego morskiego -->
+        <GradientStop Color="DodgerBlue" Offset="1.0"/> <!-- Stopka gradientu koloru niebieskiego -->
+    </LinearGradientBrush>
+
+    <!-- Definicja pędzla stałego dla tła aplikacji z przeźroczystością -->
+    <!-- Definicja pędzla stałego dla obramowania, tekstu i koloru tekstu -->
+    <SolidColorBrush x:Key="cs_BBackground" Color="AntiqueWhite" Opacity="0.5"/>
+    <SolidColorBrush x:Key="cs_BorderBrush" Color="DarkSeaGreen"/>
+    <SolidColorBrush x:Key="cs_TextBrush" Color="Black"/>
+    <SolidColorBrush x:Key="cs_Text1" Color="WhiteSmoke"/>
+    <SolidColorBrush x:Key="cs_Text2" Color="LightBlue"/>
+    <SolidColorBrush x:Key="cs_Text3" Color="Bisque"/>
+
+</ResourceDictionary>

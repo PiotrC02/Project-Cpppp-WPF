@@ -1,0 +1,624 @@
+﻿<Window x:Class="Pogodynka.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="400" Width="600"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        MouseDown="Window_MouseDown"
+        xml:lang="pl-PL">
+
+    <!-- Klasa MainWindow znajduje się w przestrzeni nazw Pogodynka -->
+    <!-- Deklaracja przestrzeni nazw Presentation -->
+    <!-- Deklaracja przestrzeni nazw XAML -->
+    <!-- Deklaracja przestrzeni nazw Expression Blend -->
+    <!-- Deklaracja przestrzeni nazw Markup Compatibility -->
+    <!-- Przestrzenie nazw dla Blend mogą zostać zignorowane -->
+    <!-- Tytuł, Wysokość i Szerokość okna -->
+    <!-- Początkowe położenie okna - na środku ekranu -->
+    <!-- Brak obramowania i przycisków okna -->
+    <!-- Okno może być przezroczyste -->
+    <!-- Przezroczyste tło okna -->
+    <!-- Obsługa zdarzenia kliknięcia myszą -->
+    <!-- Język XML -->
+
+    <Grid>
+        <!-- Główny kontener -->
+
+        <Grid.RowDefinitions>
+            <!-- Definicja wierszy siatki -->
+            <RowDefinition Height="90"/>
+            <RowDefinition Height="140"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="90"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <!-- Definicja kolumn siatki -->
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Tła -->
+        <!-- Obramowanie -->
+        <!-- Wysokość -->
+        <!-- Szerokość -->
+        <!-- Grubość obramowania -->
+        <!-- Zaokrąglenia -->
+        <!-- Ramka obejmuje x wierszy -->
+        <!-- Ramka obejmuje x kolumn -->
+        <!-- Marginesy -->
+
+        <Border Background="{StaticResource cs_Background}" 
+                BorderBrush="{StaticResource cs_BorderBrush}" 
+                Height="400"
+                Width="600"
+                BorderThickness="5"
+                CornerRadius="50"
+                Grid.RowSpan="4"
+                Grid.ColumnSpan="4"/>
+
+        <Border Background="{StaticResource cs_Background}"
+                Margin="5,5,5,10"
+                CornerRadius="50 50 0 0"
+                Grid.Row="0"
+                Grid.RowSpan="3"
+                Grid.ColumnSpan="4"/>
+
+        <Border Background="{StaticResource cs_Background}"
+                Margin="20 0 20 20"
+                CornerRadius="0 0 50 50"
+                Grid.Row="4"
+                Grid.ColumnSpan="4"/>
+
+        <!-- Przycisk zamknięcia -->
+
+        <Button Style="{StaticResource CloseButtonStyle}"
+                Grid.Column="4"
+                Height="50"
+                Width="50"
+                Click="Button_Click"/>
+
+        <!-- Pole lokalizacji -->
+        <!-- Nazwa/Źródło -->
+        <!-- Orientacja -->
+        <!-- Czcionka i jej wielkość -->
+        <!-- Wyrównanie -->
+
+        <StackPanel Margin="0 35 0 0"
+                    Orientation="Horizontal"
+                    Grid.Row="0"
+                    Grid.ColumnSpan="4"
+                    HorizontalAlignment="Center">
+
+            <Image x:Name="Lokalizacja"
+                   Source="/Obrazy/lokalizacja.png"
+                   Height="60"
+                   Width="60"
+                   HorizontalAlignment="Right"/>
+            <Label x:Name="lblCityName"
+                   Foreground="{StaticResource cs_Text2}"
+                   Content="-----"
+                   FontFamily="Fabada"
+                   FontSize="40" Height="48"/>
+
+        </StackPanel>
+
+        <!-- Cyfrowy zegar -->
+        <!-- Format -->
+        <!-- Ikony stanu pogody -->
+
+        <StackPanel Grid.Row="1"
+                    Grid.ColumnSpan="4">
+            <Label x:Name="lblDigitalClock"
+                   Foreground="{StaticResource cs_BBackground}"
+                   Content="{Binding Path=Now, StringFormat='{}{0:dd/MM/yyyy HH:mm:ss}'}"
+                   FontFamily="Fabada"
+                   FontSize="15"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Height="30"
+                   Width="150"/>
+
+            <Border Margin="5"
+                    Background="{StaticResource cs_BBackground}"
+                    Height="100"
+                    Width="550"
+                    CornerRadius="30"
+                    Opacity="0.75">
+
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="20*"/>
+                        <RowDefinition Height="2*"/>
+                    </Grid.RowDefinitions>
+
+                    <Image  x:Name="imgWeatherIconMonday"
+                    Height="50"
+                    Width="50"
+                    SnapsToDevicePixels="True" Margin="25,13,475,17" Grid.Row="1"/>
+
+                    <Image  x:Name="imgWeatherIconTuesday"
+                    Height="50"
+                    Width="50"
+                    SnapsToDevicePixels="True" Margin="100,13,400,17" Grid.Row="1"/>
+
+                    <Image  x:Name="imgWeatherIconWednesday"
+                    Height="50"
+                    Width="50"
+                    SnapsToDevicePixels="True" Margin="175,13,325,17" Grid.Row="1"/>
+
+                    <Image  x:Name="imgWeatherIconThursday"
+                    Height="50"
+                    Width="50"
+                    SnapsToDevicePixels="True" Margin="250,13,250,17" Grid.Row="1"/>
+
+                    <Image  x:Name="imgWeatherIconFriday"
+                    Height="50"
+                    Width="50"
+                    SnapsToDevicePixels="True" Margin="325,13,175,17" Grid.Row="1"/>
+
+                    <Image  x:Name="imgWeatherIconSaturday"
+                    Height="50"
+                    Width="50"
+                    SnapsToDevicePixels="True" Margin="400,13,100,17" Grid.Row="1"/>
+
+                    <Image  x:Name="imgWeatherIconSunday"
+                    Height="50"
+                    Width="50"
+                    SnapsToDevicePixels="True" Margin="475,13,25,17" Grid.Row="1"/>
+
+                    <!-- Dni tygodnia -->
+                    <!-- Format -->
+
+                    <StackPanel
+    Grid.Row="1"
+    Grid.Column="0"
+    Margin="10,58,454,0"
+    Grid.RowSpan="2">
+                        <ToggleButton x:Name="Day1"
+           IsChecked="False"
+           Foreground="{StaticResource cs_Text1}"
+           FontFamily="Fabada"
+           FontSize="15" 
+           Height="29" 
+           Width="48"
+           Click="ToggleButton_Click">
+                            <ToggleButton.Style>
+                                <Style TargetType="ToggleButton">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ToggleButton">
+                                                <Border x:Name="Border"
+                                    Background="Transparent"
+                                    CornerRadius="10">
+                                                    <ContentPresenter HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"/>
+                                                </Border>
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="IsChecked" Value="True">
+                                                        <Setter TargetName="Border" Property="Background" Value="LightGreen"/>
+                                                    </Trigger>
+                                                    <Trigger Property="IsChecked" Value="False">
+                                                        <Setter TargetName="Border" Property="Background" Value="Transparent"/>
+                                                    </Trigger>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter TargetName="Border" Property="Background" Value="LightGreen"/>
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ToggleButton.Style>
+                        </ToggleButton>
+                    </StackPanel>
+
+                    <StackPanel
+    Grid.Row="1"
+    Grid.Column="0"
+    Margin="85,58,383,0"
+    Grid.RowSpan="2">
+                        <ToggleButton x:Name="Day2"
+           Foreground="{StaticResource cs_Text1}"
+           FontFamily="Fabada"
+           FontSize="15" 
+           Height="29" 
+           Width="48"
+           Click="ToggleButton_Click">
+                            <ToggleButton.Style>
+                                <Style TargetType="ToggleButton">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ToggleButton">
+                                                <Border x:Name="Border"
+                                    Background="Transparent"
+                                    CornerRadius="10">
+                                                    <ContentPresenter HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"/>
+                                                </Border>
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="IsChecked" Value="True">
+                                                        <Setter TargetName="Border" Property="Background" Value="LightGreen"/>
+                                                    </Trigger>
+                                                    <Trigger Property="IsChecked" Value="False">
+                                                        <Setter TargetName="Border" Property="Background" Value="Transparent"/>
+                                                    </Trigger>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter TargetName="Border" Property="Background" Value="LightGreen"/>
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ToggleButton.Style>
+                        </ToggleButton>
+                    </StackPanel>
+
+                    <StackPanel
+Grid.Row="1"
+Grid.Column="0"
+Margin="167,58,314,0"
+Grid.RowSpan="2">
+                        <ToggleButton x:Name="Day3"
+       Foreground="{StaticResource cs_Text1}"
+       FontFamily="Fabada"
+       FontSize="15" 
+       Height="29" 
+       Width="48"
+       Click="ToggleButton_Click">
+                            <ToggleButton.Style>
+                                <Style TargetType="ToggleButton">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ToggleButton">
+                                                <Border x:Name="Border"
+                                Background="Transparent"
+                                CornerRadius="10">
+                                                    <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                                                </Border>
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="IsChecked" Value="True">
+                                                        <Setter TargetName="Border" Property="Background" Value="LightGreen"/>
+                                                    </Trigger>
+                                                    <Trigger Property="IsChecked" Value="False">
+                                                        <Setter TargetName="Border" Property="Background" Value="Transparent"/>
+                                                    </Trigger>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter TargetName="Border" Property="Background" Value="LightGreen"/>
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ToggleButton.Style>
+                        </ToggleButton>
+                    </StackPanel>
+
+                    <StackPanel
+Grid.Row="1"
+Grid.Column="0"
+Margin="241,58,238,0"
+Grid.RowSpan="2">
+                        <ToggleButton x:Name="Day4"
+       Foreground="{StaticResource cs_Text1}"
+       FontFamily="Fabada"
+       FontSize="15" 
+       Height="29" 
+       Width="48"
+       Click="ToggleButton_Click">
+                            <ToggleButton.Style>
+                                <Style TargetType="ToggleButton">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ToggleButton">
+                                                <Border x:Name="Border"
+                                Background="Transparent"
+                                CornerRadius="10">
+                                                    <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                                                </Border>
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="IsChecked" Value="True">
+                                                        <Setter TargetName="Border" Property="Background" Value="LightGreen"/>
+                                                    </Trigger>
+                                                    <Trigger Property="IsChecked" Value="False">
+                                                        <Setter TargetName="Border" Property="Background" Value="Transparent"/>
+                                                    </Trigger>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter TargetName="Border" Property="Background" Value="LightGreen"/>
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ToggleButton.Style>
+                        </ToggleButton>
+                    </StackPanel>
+
+                    <StackPanel
+Grid.Row="1"
+Grid.Column="0"
+Margin="312,58,158,0"
+Grid.RowSpan="2">
+                        <ToggleButton x:Name="Day5"
+       Foreground="{StaticResource cs_Text1}"
+       FontFamily="Fabada"
+       FontSize="15" 
+       Height="29" 
+       Width="48"
+       Click="ToggleButton_Click">
+                            <ToggleButton.Style>
+                                <Style TargetType="ToggleButton">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ToggleButton">
+                                                <Border x:Name="Border"
+                                Background="Transparent"
+                                CornerRadius="10">
+                                                    <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                                                </Border>
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="IsChecked" Value="True">
+                                                        <Setter TargetName="Border" Property="Background" Value="LightGreen"/>
+                                                    </Trigger>
+                                                    <Trigger Property="IsChecked" Value="False">
+                                                        <Setter TargetName="Border" Property="Background" Value="Transparent"/>
+                                                    </Trigger>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter TargetName="Border" Property="Background" Value="LightGreen"/>
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ToggleButton.Style>
+                        </ToggleButton>
+                    </StackPanel>
+
+                    <StackPanel
+Grid.Row="1"
+Grid.Column="0"
+Margin="380,58,76,0"
+Grid.RowSpan="2">
+                        <ToggleButton x:Name="Day6"
+       Foreground="{StaticResource cs_Text1}"
+       FontFamily="Fabada"
+       FontSize="15" 
+       Height="29" 
+       Width="48"
+       Click="ToggleButton_Click">
+                            <ToggleButton.Style>
+                                <Style TargetType="ToggleButton">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ToggleButton">
+                                                <Border x:Name="Border"
+                                Background="Transparent"
+                                CornerRadius="10">
+                                                    <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                                                </Border>
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="IsChecked" Value="True">
+                                                        <Setter TargetName="Border" Property="Background" Value="LightGreen"/>
+                                                    </Trigger>
+                                                    <Trigger Property="IsChecked" Value="False">
+                                                        <Setter TargetName="Border" Property="Background" Value="Transparent"/>
+                                                    </Trigger>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter TargetName="Border" Property="Background" Value="LightGreen"/>
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ToggleButton.Style>
+                        </ToggleButton>
+                    </StackPanel>
+
+                    <StackPanel
+Grid.Row="1"
+Grid.Column="0"
+Margin="474,58,25,0"
+Grid.RowSpan="2">
+                        <ToggleButton x:Name="Day7"
+       Foreground="{StaticResource cs_Text1}"
+       FontFamily="Fabada"
+       FontSize="15" 
+       Height="29" 
+       Width="48"
+       Click="ToggleButton_Click">
+                            <ToggleButton.Style>
+                                <Style TargetType="ToggleButton">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ToggleButton">
+                                                <Border x:Name="Border"
+                                Background="Transparent"
+                                CornerRadius="10">
+                                                    <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                                                </Border>
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="IsChecked" Value="True">
+                                                        <Setter TargetName="Border" Property="Background" Value="LightGreen"/>
+                                                    </Trigger>
+                                                    <Trigger Property="IsChecked" Value="False">
+                                                        <Setter TargetName="Border" Property="Background" Value="Transparent"/>
+                                                    </Trigger>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter TargetName="Border" Property="Background" Value="LightGreen"/>
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ToggleButton.Style>
+                        </ToggleButton>
+                    </StackPanel>
+
+                    <StackPanel
+Grid.Column="0"
+Margin="312,-35,200,25">
+                        <Label x:Name="Day11"
+       Foreground="{StaticResource cs_Text1}"
+       FontFamily="Fabada"
+       FontSize="15" 
+       Height="29" 
+       Width="48">
+                            <Label.Style>
+                                <Style TargetType="Label">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="Label">
+                                                <Border x:Name="Border"
+                                Background="Transparent"
+                                CornerRadius="10">
+                                                    <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </Label.Style>
+                        </Label>
+                    </StackPanel>
+
+                </Grid>
+
+            </Border>
+            <Label x:Name="lblCondition"
+                   Foreground="{StaticResource cs_Text3}"
+                   Content="-----"
+                   FontFamily="Fabada"
+                   FontSize="30"/>
+
+        </StackPanel>
+
+        <!-- Temperatura -->
+
+        <StackPanel Grid.Row="2"
+                    Grid.Column="0"
+                    Margin="0">
+
+            <Image x:Name="Temperatura"
+                   Source="/Obrazy/temperatura.png"
+                   Height="40"
+                   Width="50"/>
+
+            <Label x:Name="lblTemperature"
+                   Foreground="{StaticResource cs_Text1}"
+                   Content="-----"
+                   FontFamily="Fabada"
+                   FontSize="23"
+                   HorizontalAlignment="Center" Height="35"/>
+
+        </StackPanel>
+
+        <!-- Wilgotność -->
+
+        <StackPanel Grid.Row="2"
+                    Grid.Column="1"
+                    Margin="0">
+
+            <Image x:Name="Nawilgocenie"
+                   Source="/Obrazy/nawilgocenie.png"
+                   Height="40"
+                   Width="50"/>
+
+            <Label x:Name="lblHumidity"
+                   Foreground="{StaticResource cs_Text1}"
+                   Content="-----"
+                   FontFamily="Fabada"
+                   FontSize="23"
+                   HorizontalAlignment="Center" Height="35"/>
+
+        </StackPanel>
+
+        <!-- Prędkość wiatru -->
+
+        <StackPanel Grid.Row="2"
+                    Grid.Column="2"
+                    Margin="0">
+
+            <Image x:Name="Wiatr"
+                  Source="/Obrazy/wiatr.png"
+                  Height="40"
+                  Width="50"/>
+
+            <Label x:Name="lblWindSpeed"
+                  Foreground="{StaticResource cs_Text1}"
+                  Content="-----"
+                  FontFamily="Fabada"
+                  FontSize="23"
+                  HorizontalAlignment="Center" Height="35"/>
+
+        </StackPanel>
+
+        <!-- Opady -->
+
+        <StackPanel Grid.Row="2"
+            Grid.Column="3"
+            Margin="0">
+
+            <Image x:Name="Opady"
+                   Source="/Obrazy/opady.png"
+                   Height="40"
+                   Width="50"/>
+
+            <Label x:Name="lblPrecipitation"
+                   Foreground="{StaticResource cs_Text1}"
+                   Content="-----"
+                   FontFamily="Fabada"
+                   FontSize="23"
+                   HorizontalAlignment="Center" Height="35"/>
+
+        </StackPanel>
+
+        <!-- Pole wprowadzania nazwy miasta (TextBox) -->
+        <!-- Przycisk sprawdzenia pogody (Button) -->
+
+        <StackPanel Grid.Row="3"
+                    Grid.ColumnSpan="4"
+                    Margin="0 0 0 0">
+
+            <TextBox Height="30"
+                     Width="200"
+                     x:Name="txtCityName"
+                     Style="{StaticResource tbox_Txt}"
+                     HorizontalAlignment="Center"
+                     Tag="Proszę wprowadzić nazwę miasta"/>
+
+            <Button Height="30"
+                    Width="400"
+                    Margin="10"
+                    x:Name="btnGetWeather"
+                    Content="Sprawdź pogodę"
+                    Click="btnGetWeather_Click"
+                    FontFamily="Fabada"
+                    FontSize="20"
+                    Style="{StaticResource WeatherButtonStyle}"/>
+
+        </StackPanel>
+
+    </Grid>
+
+</Window>
